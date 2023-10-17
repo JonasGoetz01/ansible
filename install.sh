@@ -6,4 +6,6 @@ python3 get-pip.py
 
 python3 -m pip install --user ansible
 
-#ansible-playbook -i localhost, -c local install.yml
+echo 'export PATH="/root/.local/bin:$PATH"' >> ~/.bashrc
+
+curl -sS https://raw.githubusercontent.com/JonasGoetz01/ansible/main/install.yaml -o install.yaml && ansible-playbook -i localhost, -c local install.yaml
