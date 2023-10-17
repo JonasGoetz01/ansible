@@ -1,5 +1,13 @@
 # Ansible
 
+## Install
+```sh
+apt update 
+apt full-upgrade -y
+apt install curl
+
+```
+
 1. Install Ansible
 ```sh
 python3 -m pip install --user ansible
