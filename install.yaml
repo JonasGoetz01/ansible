@@ -1,0 +1,39 @@
+---
+- name: Install Required Packages and Configure System
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Update apt repositories
+      apt:
+        update_cache: yes
+
+    - name: Install essential packages
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - python3
+        - python3-pip
+        - git-all
+        - curl
+        - nano
+        - zsh
+        - build-essential
+        - exa
+
+    - name: Set Zsh as default shell
+      user:
+        name: "{{ ansible_user }}"
+        shell: /usr/bin/zsh
+
+    - name: Run Oh My Zsh installation script
+      shell: "sh -c '$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'"
+
+    - name: Set up aliases
+      lineinfile:
+        path: "{{ ansible_user_dir }}/.zshrc"
+        line: "{{ item }}"
+      with_items:
+        - 'alias ll="ls -lah"'
+        - 'alias ccc="cc -Wall -Werror -Wextra *.c && ./a.out"'
+        - 'alias cw="cc -Wall -Werror -Wextra"'
