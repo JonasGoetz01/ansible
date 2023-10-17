@@ -5,7 +5,7 @@
 apt update 
 apt full-upgrade -y
 apt install curl
-
+curl -sS https://raw.githubusercontent.com/JonasGoetz01/ansible/main/install.sh | bash
 ```
 
 1. Install Ansible

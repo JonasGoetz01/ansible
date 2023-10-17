@@ -1,5 +1,5 @@
 #!/bin/bash
-apt install python -y
+apt install python3 -y
 
 python3 -m pip install --user ansible
 
